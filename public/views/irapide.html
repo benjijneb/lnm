@@ -1,0 +1,59 @@
+<section class="row">
+	<h3 class="col-md-12 text-center blancombre">Inscrivez-vous</h3>
+	<div class="col-xs-offset-2 col-xs-8 col-md-offset-3 col-md-6">
+		<form ng-submit="signup()" class="signin form-horizontal" novalidate autocomplete="off">
+			<fieldset>
+				<!--<div class="form-group">
+					<label class="blancombre" for="firstName">First Name</label>
+					<input type="text" required id="firstName" name="firstName" class="form-control" data-ng-model="user.firstName" placeholder="First Name">
+				</div>
+				<div class="form-group">
+					<label class="blancombre" for="lastName">Last Name</label>
+					<input type="text" id="lastName" name="lastName" class="form-control" data-ng-model="user.lastName" placeholder="Last Name">
+				</div>-->
+				<div class="col-md-5">
+					<div class="form-group">
+						<label class="blancombre" for="username">Login</label>
+						<input type="text" id="username" name="username" class="form-control" ng-model="user.username" placeholder="Login">
+					</div>
+					<div class="form-group">
+						<label class="blancombre" for="email">Email</label>
+						<input type="text" id="email" name="email" class="form-control" ng-model="user.email" placeholder="Email">
+					</div>
+				</div>
+				<div class="col-md-5 col-md-offset-2">
+					<div class="form-group">
+						<label class="blancombre" for="password">Password</label>
+						<input type="password" id="password" name="password" class="form-control" ng-model="user.password" placeholder="Password">
+					</div>
+					<div class="form-group">
+						<label class="blancombre" for="dropdownMenu1">Race</label>
+						<select class="form-control" ng-model="user.race">
+							<option value="0">Humain</option>
+							<option value="1">Elfe Sylvain</option>
+							<option value="2">Nain</option>
+							<option value="3">Nagga</option>
+							<option value="4">Dragoon</option>
+							<option value="5">Elfe Noir</option>
+							<option value="6">Orque</option>
+							<option value="7">Damné</option>
+							<option value="8">Mort Vivant</option>
+							<option value="9">Démon</option>
+							<option value="10">Nordique</option>
+							<option value="11">Skaven</option>
+							<option value="12">Arakkoas</option>
+							<option value="13">Golem</option>
+						</select>
+					</div>
+				</div>
+				<div class="text-center form-group">
+					<button type="submit" class="btn btn-large btn-primary">Inscription</button><!--&nbsp; or&nbsp;
+					<a href="/#!/signin" class="show-signup">Sign in</a>-->
+				</div>
+				<div ng-show="error" class="text-center text-danger blancombre">
+					<strong ng-bind="error"></strong>
+				</div>
+			</fieldset>
+		</form>
+	</div>
+</section>

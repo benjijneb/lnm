@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" ng-app="lnm">
+
+<head>
+	<title>LNM</title>
+
+	<!-- General META -->
+	<meta charset="utf-8">
+	<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+
+	<!-- Fav Icon 
+	<link href="/modules/core/img/brand/favicon.ico" rel="shortcut icon" type="image/x-icon">-->
+
+	<!--Application CSS Files -->
+	<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/theme.css">
+
+	<!-- HTML5 Shim -->
+	<!--[if lt IE 9]>
+		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+</head>
+
+<body ng-controller="HeadCtrl">
+	<header ng-include="'header.html'" class="header header-fixed"></header>
+	<section role="main" class="container lnm">
+      <div class="main-grid main-body-grid">
+        <div class="grid-left" style="border-right: solid 1px;">
+			<ul class="elements" ng-if="authUser">
+				<li><a href="">Dragostina</a>
+				<li><a href="">Messagerie</a> <span class="badge">3</span>
+				<li><a href="">Rapports</a> <span class="badge">18</span>
+				<li><a href=''>Bâtiments</a>
+				<li><a href=''>Gestion</a>
+				<li><a href=''>Commerce</a>
+				<li><a href=''>Espionnage</a>
+				<li><a href=''>Attaquer</a>
+				<li><a href=''>Talent</a>
+				<li><a href=''>Guilde</a>
+			</ul>
+        </div>
+        <div ng-view class="grid-right">
+		</div>
+	  </div>
+	</section>
+
+	<!--Application JavaScript Files-->
+	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.9/angular.min.js"></script><!-- load angular -->
+	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.9/angular-resource.js"></script><!-- load angular -->
+	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.9/angular-route.js"></script><!-- load angular -->
+	<script src="angularjs/angular.lnm.js"></script><!-- load angular -->
+	<script src="https://cdn.socket.io/socket.io-1.0.5.js"></script>
+</body>
+
+</html>

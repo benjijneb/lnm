@@ -1,0 +1,78 @@
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+  display: none !important;
+}
+body {
+	padding-top: 50px;
+	background: #fff /*url(../images/fond.jpg) no-repeat center 50px*/;
+}
+.container.top {
+	margin: 0;
+	width: 100%;
+}
+.container.lnm {
+	margin: 0;
+	width: 95%;
+}
+.menu {
+	background-color: white;
+	min-height: 100%;
+}
+.elements {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+.elements > li {
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+.navbar-brand {
+}
+.header-fixed {
+	position: fixed;
+	z-index: 1000;
+	top: 0;
+	left: 0;
+	right: 0;
+}
+.docs-navbar-primary {
+	border-radius: 0!important;
+	margin-bottom: 0!important;
+}
+.sup-header {
+	padding-top: 10px;
+	padding-bottom: 5px;
+	background: rgba(216,208,161,0.88);/*rgba(245,245,245,0.88)*/;
+	box-shadow: 0 0 2px #999;
+}
+.main-body-grid {
+	margin-top: 70px;
+	position: relative;
+}
+.main-body-grid > .grid-left {
+	width: 120px;
+}
+.main-body-grid > .grid-left {
+	position: fixed;
+}
+.main-header-grid > .grid-right, .main-body-grid > .grid-right {
+	margin-left: 120px;
+	position: relative;
+}
+.img-top {
+	width: 30px;
+	height: 13px;
+	vertical-align: middle;
+	border: solid black 1px;
+	margin-left: 5px;
+	margin-right: 5px;
+}
+.row-top {
+	font-size: 11px;
+	padding-top: 2px;
+	padding-bottom: 2px;
+}
+.dragnews {
+    color: black;
+    font-size: 8px;
+}

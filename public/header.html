@@ -1,0 +1,85 @@
+<div id="wrapper">
+	<section class="navbar navbar-inverse docs-navbar-primary">
+		<div class="container top">
+			<div class="row">
+				<div class="col-md-12 header-branding">
+					<button type="button" class="navbar-toggle" data-toggle="collapse"
+						data-target=".navbar-collapse">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href="/">L.N.M.</a>
+					<div class="navbar-collapse collapse">
+						<ul class="nav navbar-nav">
+							<li ng-if="authUser">
+								<a href="#/royaume">{{authUser.username}}</a>
+							</li>
+							<li>
+								<a href="http://forum.lautrenouveaumonde.org">Forum</a>
+							</li>
+							<li class="dropdown"><a href="#" class="dropdown-toggle" toggle="dropdown">Goodies <b class="caret"></b></a>
+								<ul class="dropdown-menu">
+									<li><a href="#">Générateur de noms</a></li>
+									<li><a href="#">Correspondances des races</a></li>
+									<li><a href="#">Convertisseur de dates</a></li>
+								</ul></li>
+						</ul>
+						<form ng-if="!authUser" role="form" ng-submit="login()" class="signin navbar-form navbar-right">
+							<span class="form-group">
+								<input id="username" name="username" type="text" class="form-control" placeholder="Login" ng-model="user.username">
+							</span>
+							<span class="form-group>">
+								<input id="password" name="password" type="password" class="form-control" placeholder="Password" ng-model="user.password">
+							</span>
+							<button type="submit" class="btn btn-success">Login</button>
+						</form>
+						<form ng-if="authUser" class="navbar-form navbar-right" role="form" ng-submit="logout()">
+							<button type="submit" class="btn btn-sm btn-danger">Déconnexion</button>
+						</form>
+						<span ng-if="authUser" class="navbar-right">
+							<img class="img-circle" width="50px" height="50px"
+								src="http://upload.wikimedia.org/wikipedia/commons/8/86/Meuble_h%C3%A9raldique_Salamandre_crachant.svg">
+						</span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<section class="sup-header" ng-if="authUser">
+		<div class="container main-grid main-header-grid top" style="grid-columns: 15;">
+			<div class="row row-top">
+				<div class="col-md-2">
+					<img src="images/nr.png" class="responsive img-top" />
+					<span>{{ressources.nr}}</span>
+				</div>
+				<div class="col-md-2">
+					<img src="images/fr.png" class="responsive img-top" />
+					<span>{{ressources.fr}}</span>
+				</div>
+				<div class="col-md-2">
+					<img src="images/bs.png" class="responsive img-top" />
+					<span>{{ressources.bs}}</span>
+				</div>
+				<div class="col-md-2">
+					<img src="images/pr.png" class="responsive img-top" />
+					<span>{{ressources.pr}}</span>
+				</div>
+				<div class="col-md-2">
+					<img src="images/au.png" class="responsive img-top" />
+					<span>{{ressources.or}}</span>
+				</div>
+				<div class="col-md-2">
+					<img src="images/ha.png" class="responsive img-top" />
+					<span>{{ressources.ha}}</span>
+				</div>
+			</div>
+			<div class="row row-top">
+				<div class="col-md-12">
+					<!--<img src="images/tr_small.png"/><span id='tour'></span>-->
+				</div>
+			</div>
+		</div>
+	</section>
+</div>
