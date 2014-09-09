@@ -69,6 +69,21 @@ RoyaumeSchema.methods.getNextTurnDate = function getNextTurnDate() {
 	return toTurnDate(new Date(new Date().getTime() + 180000))
 }
 
+RoyaumeSchema.statics.getTurnDate = function(nTurn) {
+
+	return toTurnDate(new Date(new Date().getTime() + 180000 * nTurn))
+}
+
+RoyaumeSchema.statics.findByUserId = function(userId) {
+
+	this.findOne({ user_id: userId }, function(err, roy) {
+		if(err)
+			return err
+		console.log('found one')
+		return roy
+	})
+}
+
 function toTurnDate(date) {
 
 	var turnDateMinutes = Math.floor(date.getMinutes() / 3) * 3

@@ -1,6 +1,6 @@
 var mongoose = require('mongoose')
-var User = mongoose.model('User')
 var Royaume = mongoose.model('Royaume')
+var Maj = mongoose.model('Maj')
 
 exports.infos = function(req, res) {
 
@@ -27,5 +27,13 @@ function update(roy) {
 		for(var i in ress) {
 			roy[ress[i]] += 1 * nbTurns
 		}
+
+		// Maj queue
+		Maj.find({ end_date : { $lte: Royaume.getTurnDate(0) } }, function(err, majs) {
+			for(var i in majs) {
+				var maj = majs[i]
+				console.log(maj._id)
+			}
+		})
 	}
 }

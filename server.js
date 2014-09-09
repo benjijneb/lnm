@@ -11,7 +11,7 @@ var cookieParser = require('cookie-parser')
 var mongoose = require('mongoose')
 var io = require('socket.io')
 var passportSocketIo = require("passport.socketio")
-var CronJob = require('cron').CronJob;
+var CronJob = require('cron').CronJob
 
 //==================================================================
 // LOAD MODELS
@@ -107,7 +107,7 @@ ioServer.use(passportSocketIo.authorize({
 ioServer.sockets.on('connection', function (socket) {
     console.log('Client connected: (' + socket.request.user.username + ')')
 	var cron = new CronJob('0 0,3,6,9,12,15,18,21,24,27,30,33,36,39,42,45,48,51,54,57 * * * *', function(){
-		console.log('Time to update ! ' + Date.now())
+		console.log('Time to update ! ' + new Date())
 		socket.emit('tick')
 	}, null, true)
 	console.log('Cron job started')
