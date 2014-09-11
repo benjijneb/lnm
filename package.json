@@ -5,15 +5,15 @@
   "private": true,
   "dependencies": {
     "express": "4.x",
-	"express-session": "*",
-	"body-parser": "*",
-	"cookie-parser": "*",
-	"mongoose": "*",
-	"mongoose-session": "*",
-	"passport": "*",
-	"passport-local": "*",
-	"socket.io": "*",
-	"passport.socketio": "*",
-	"cron": "*"
+	"express-session": "latest",
+	"body-parser": "latest",
+	"cookie-parser": "latest",
+	"mongoose": "latest",
+	"mongoose-session": "latest",
+	"passport": "latest",
+	"passport-local": "latest",
+	"socket.io": "latest",
+	"passport.socketio": "latest",
+	"cron": "latest"
   }
 }

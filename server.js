@@ -9,7 +9,6 @@ var http = require('http')
 var bodyParser = require('body-parser')
 var cookieParser = require('cookie-parser')
 var mongoose = require('mongoose')
-var io = require('socket.io')
 var passportSocketIo = require("passport.socketio")
 var CronJob = require('cron').CronJob
 
@@ -90,13 +89,15 @@ app.use(passport.session())
 
 //==================================================================
 // LAUNCH SERVER
-var server = http.createServer(app).listen(app.get('port'), function(){
+var server = http.Server(app)
+
+server.listen(app.get('port'), function(){
 	console.log('Express server listening on port ' + app.get('port'))
 })
 
 //==================================================================
 // SOCKET IO
-var ioServer = io.listen(server)
+var ioServer = require('socket.io')(server)
 ioServer.use(passportSocketIo.authorize({
 	cookieParser: cookieParser,
 	key: 'lnm.express.sid',
@@ -104,8 +105,8 @@ ioServer.use(passportSocketIo.authorize({
 	store: sessionStore
 }))
 
-ioServer.sockets.on('connection', function (socket) {
-    console.log('Client connected: (' + socket.request.user.username + ')')
+ioServer.on('connection', function (socket) {
+    console.log('Client connected')//: ' + socket.request.user.username + ')')
 	var cron = new CronJob('0 0,3,6,9,12,15,18,21,24,27,30,33,36,39,42,45,48,51,54,57 * * * *', function(){
 		console.log('Time to update ! ' + new Date())
 		socket.emit('tick')
