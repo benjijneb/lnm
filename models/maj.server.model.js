@@ -12,10 +12,12 @@ var mongoose = require('mongoose'),
 var MajSchema = new Schema({
 
 	royaume_id: {
-		type: Schema.Types.ObjectId
+		type: Schema.Types.ObjectId,
+		ref: 'Royaume'
 	},
 	royaume_target_id: {
-		type: Schema.Types.ObjectId
+		type: Schema.Types.ObjectId,
+		ref: 'Royaume'
 	},
 	type: {
 		type: String,

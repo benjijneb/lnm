@@ -6,11 +6,9 @@ body {
 	background: #fff /*url(../images/fond.jpg) no-repeat center 50px*/;
 }
 .container.top {
-	margin: 0;
 	width: 100%;
 }
 .container.lnm {
-	margin: 0;
 	width: 95%;
 }
 .menu {
@@ -26,8 +24,6 @@ body {
 	padding-top: 10px;
 	padding-bottom: 10px;
 }
-.navbar-brand {
-}
 .header-fixed {
 	position: fixed;
 	z-index: 1000;
@@ -35,19 +31,22 @@ body {
 	left: 0;
 	right: 0;
 }
+.header-branding {
+	margin-left: 15px;
+}
 .docs-navbar-primary {
 	border-radius: 0!important;
 	margin-bottom: 0!important;
 }
-.sup-header {
-	padding-top: 10px;
-	padding-bottom: 5px;
-	background: rgba(216,208,161,0.88);/*rgba(245,245,245,0.88)*/;
-	box-shadow: 0 0 2px #999;
-}
 .main-body-grid {
 	margin-top: 70px;
 	position: relative;
+}
+/*.sup-header {
+	padding-top: 10px;
+	padding-bottom: 5px;
+	background: rgba(216,208,161,0.88);
+	box-shadow: 0 0 2px #999;
 }
 .main-body-grid > .grid-left {
 	width: 120px;
@@ -58,14 +57,21 @@ body {
 .main-header-grid > .grid-right, .main-body-grid > .grid-right {
 	margin-left: 120px;
 	position: relative;
-}
+}*/
 .img-top {
 	width: 30px;
 	height: 13px;
-	vertical-align: middle;
 	border: solid black 1px;
+}
+.img-icone {
+	vertical-align: middle;
 	margin-left: 5px;
 	margin-right: 5px;
+}
+.img-res {
+	width: 22px;
+	height: 22px;
+	border: solid black 1px;
 }
 .row-top {
 	font-size: 11px;
@@ -75,4 +81,10 @@ body {
 .dragnews {
     color: black;
     font-size: 8px;
+}
+.popover-title {
+	color: rgb(51, 51, 51);
+}
+.popover-content {
+	color: rgb(51, 51, 51);
 }

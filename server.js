@@ -14,7 +14,7 @@ var CronJob = require('cron').CronJob
 
 //==================================================================
 // LOAD MODELS
-require("fs").readdirSync("./models").forEach(function(file) {
+require("fs").readdirSync("./models").forEach(function (file) {
 	require("./models/" + file)
 })
 var User = mongoose.model('User')
@@ -24,18 +24,18 @@ var User = mongoose.model('User')
 // Define the strategy to be used by PassportJS
 passport.use(new LocalStrategy(
 
-	function(username, password, done) {
+	function (username, password, done) {
 
-		User.findOne({username: username}, function(err, user) {
-			if(err)
+		User.findOne({username: username}, function (err, user) {
+
+			if (err)
 				return done(err)
 			
-			if(!user)
+			if (!user)
 				return done(null, false, { message: 'Incorrect username.' })
 			
-			if (!user.authenticate(password)) {
+			if (!user.authenticate(password))
 				return done(null, false, { message: 'Invalid password' })
-			}
 
 			return done(null, user)
 		})
@@ -43,24 +43,30 @@ passport.use(new LocalStrategy(
 ))
 
 // Define a middleware function to be used for every secured routes
-var auth = function(req, res, next){
+var auth = function (req, res, next) {
+
 	if (!req.isAuthenticated()) {
+
 		console.log(req.url + ": unauthorised")
 		res.status(401).end(http.STATUS_CODES[401])
 	} else {
+
 		console.log(req.url + ": authorised")
 		next()
 	}
 }
 
 // Serialized and deserialized methods when got from session
-passport.serializeUser(function(user, done) {
+passport.serializeUser(function (user, done) {
+
 	done(null, user.username);
 })
-passport.deserializeUser(function(username, done) {
+passport.deserializeUser(function (username, done) {
 	User.findOne({
+
 		username: username
-	}, '-salt -password', function(err, user) {
+	}, '-salt -password', function (err, user) {
+
 		done(err, user);
 	})
 })
@@ -91,7 +97,8 @@ app.use(passport.session())
 // LAUNCH SERVER
 var server = http.Server(app)
 
-server.listen(app.get('port'), function(){
+server.listen(app.get('port'), function () {
+
 	console.log('Express server listening on port ' + app.get('port'))
 })
 
@@ -99,6 +106,7 @@ server.listen(app.get('port'), function(){
 // SOCKET IO
 var ioServer = require('socket.io')(server)
 ioServer.use(passportSocketIo.authorize({
+
 	cookieParser: cookieParser,
 	key: 'lnm.express.sid',
 	secret: 'iacthulhufhtagn',
@@ -106,14 +114,18 @@ ioServer.use(passportSocketIo.authorize({
 }))
 
 ioServer.on('connection', function (socket) {
-    console.log('Client connected')//: ' + socket.request.user.username + ')')
-	var cron = new CronJob('0 0,3,6,9,12,15,18,21,24,27,30,33,36,39,42,45,48,51,54,57 * * * *', function(){
+
+    console.log('Client connected: ' + socket.request.user.username)
+	var cron = new CronJob('0 0,3,6,9,12,15,18,21,24,27,30,33,36,39,42,45,48,51,54,57 * * * *', function (){
+
 		console.log('Time to update ! ' + new Date())
 		socket.emit('tick')
 	}, null, true)
 	console.log('Cron job started')
+
 	//console.log(ioServer.sockets.connected[socket.id].client.request.user.name)
-	socket.on('disconnect', function(socket) {
+	socket.on('disconnect', function (socket) {
+
 		console.log('A client is disconnected')
 		cron.stop()
 		console.log('Cron job stopped')

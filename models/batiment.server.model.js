@@ -4,24 +4,50 @@
  * Module dependencies.
  */
 var mongoose = require('mongoose'),
-	Schema = mongoose.Schema,
-	crypto = require('crypto')
+	Schema = mongoose.Schema
 
 /**
  * Royaume Schema
  */
 var BatimentSchema = new Schema({
 
-	royaume_id: {
+
+	unit: {
 		type: Schema.Types.ObjectId
 	},
-	bat: {
+	description: {
 		type: String,
 		trim: true
 	},
-	qt: {
-		type: Number,
-		default: 0
+	type: {
+		type: Number
+	},
+	nr: {
+		type: Number
+	},
+	fr: {
+		type: Number
+	},
+	bs: {
+		type: Number
+	},
+	pr: {
+		type: Number
+	},
+	or: {
+		type: Number
+	},
+	ha: {
+		type: Number
+	},
+	tr: {
+		type: Number
+	},
+	pv: {
+		type: Number
+	},
+	pp: {
+		type: Number
 	}
 })
 
@@ -32,5 +58,10 @@ BatimentSchema.pre('save', function(next) {
 
 	next()
 })
+
+BatimentSchema.statics.getAll = function(cb) {
+
+	this.find({}, cb)
+}
 
 mongoose.model('Batiment', BatimentSchema)

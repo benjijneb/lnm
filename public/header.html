@@ -2,16 +2,15 @@
 	<section class="navbar navbar-inverse docs-navbar-primary">
 		<div class="container top">
 			<div class="row">
-				<div class="col-md-12 header-branding">
-					<button type="button" class="navbar-toggle" data-toggle="collapse"
-						data-target=".navbar-collapse">
-						<span class="sr-only">Toggle navigation</span>
+				<div class="header-branding">
+					<button type="button" class="navbar-toggle" ng-click="isCollapsed = !isCollapsed">
+						<span class="sr-only">Toggle</span>
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 					</button>
 					<a class="navbar-brand" href="/">L.N.M.</a>
-					<div class="navbar-collapse collapse">
+					<div class="navbar-collapse" collapse="isCollapsed">
 						<ul class="nav navbar-nav">
 							<li ng-if="authUser">
 								<a href="#/royaume">{{authUser.username}}</a>
@@ -19,12 +18,27 @@
 							<li>
 								<a href="http://forum.lautrenouveaumonde.org">Forum</a>
 							</li>
-							<li class="dropdown"><a href="#" class="dropdown-toggle" toggle="dropdown">Goodies <b class="caret"></b></a>
-								<ul class="dropdown-menu">
-									<li><a href="#">Générateur de noms</a></li>
-									<li><a href="#">Correspondances des races</a></li>
-									<li><a href="#">Convertisseur de dates</a></li>
-								</ul></li>
+							<li class="dropdown" on-toggle="toggled(open)">
+								<a href class="dropdown-toggle">Goodies <span class="caret"></span></a>
+								<ul class="dropdown-menu" role="menu">
+									<li><a href>Générateur de noms</a></li>
+									<li><a href>Correspondances des races</a></li>
+									<li><a href>Convertisseur de dates</a></li>
+								</ul>
+							</li>
+							<li class="dropdown" on-toggle="toggled(open)">
+								<a href class="dropdown-toggle">Royaume <span class="caret"></span></a>
+								<ul class="dropdown-menu" role="menu">
+									<li><a href>Dragostina</a></li>
+									<li><a href="#/construire">Bâtiments</a></li>
+									<li><a href>Gestion</a></li>
+									<li><a href>Commerce</a></li>
+									<li><a href>Espionnage</a></li>
+									<li><a href>Attaquer</a></li>
+									<li><a href>Talent</a></li>
+									<li><a href>Guilde</a></li>
+								</ul>
+							</li>
 						</ul>
 						<form ng-if="!authUser" role="form" ng-submit="login()" class="signin navbar-form navbar-right">
 							<span class="form-group">
@@ -45,39 +59,34 @@
 					</div>
 				</div>
 			</div>
-		</div>
-	</section>
-	<section class="sup-header" ng-if="authUser">
-		<div class="container main-grid main-header-grid top" style="grid-columns: 15;">
-			<div class="row row-top">
-				<div class="col-md-2">
-					<img src="images/nr.png" class="responsive img-top" />
-					<span>{{ressources.nr}}</span>
-				</div>
-				<div class="col-md-2">
-					<img src="images/fr.png" class="responsive img-top" />
-					<span>{{ressources.fr}}</span>
-				</div>
-				<div class="col-md-2">
-					<img src="images/bs.png" class="responsive img-top" />
-					<span>{{ressources.bs}}</span>
-				</div>
-				<div class="col-md-2">
-					<img src="images/pr.png" class="responsive img-top" />
-					<span>{{ressources.pr}}</span>
-				</div>
-				<div class="col-md-2">
-					<img src="images/au.png" class="responsive img-top" />
-					<span>{{ressources.or}}</span>
-				</div>
-				<div class="col-md-2">
-					<img src="images/ha.png" class="responsive img-top" />
-					<span>{{ressources.ha}}</span>
-				</div>
-			</div>
-			<div class="row row-top">
-				<div class="col-md-12">
-					<!--<img src="images/tr_small.png"/><span id='tour'></span>-->
+			<div class="row navbar-collapse" ng-if="authUser" collapse="isCollapsed">
+				<div class="container main-grid main-header-grid top" style="grid-columns: 15; color: white;">
+					<div class="row row-top">
+						<div class="col-md-8">
+							<img src="images/icons/food.svg" class="responsive img-res img-icone" title="nourriture" />
+							<span>{{ressources.nr}}</span>
+							<img src="images/icons/metal.svg" class="responsive img-res img-icone" title="fer" />
+							<span>{{ressources.fr}}</span>
+							<img src="images/icons/wood.svg" class="responsive img-res img-icone" title="bois" />
+							<span>{{ressources.bs}}</span>
+							<img src="images/icons/stone.svg" class="responsive img-res img-icone" title="pierre" />
+							<span>{{ressources.pr}}</span>
+							<img src="images/icons/gold.svg" class="responsive img-res img-icone" title="or" />
+							<span>{{ressources.or}}</span>
+							<img src="images/icons/field.svg" class="responsive img-res img-icone" title="hectares" />
+							<span>{{ressources.ha}}</span>
+						</div>
+						<div class="col-md-4" style="text-align: right;">
+							<img src="images/icons/build.svg" class="responsive img-res img-icone" title="constructions" 
+								popover="Constructions" popover-title="Constructions en attente"
+								popover-placement="bottom" />
+							<span class="badge">{{ressources.pending}}</span>
+							<img src="images/icons/tied-scroll.svg" class="responsive img-res img-icone" title="message" />
+							<span class="badge">18</span>
+							<img src="images/icons/crossed-swords.svg" class="responsive img-res img-icone" title="attaques reçues" />
+							<span class="badge">2</span>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>

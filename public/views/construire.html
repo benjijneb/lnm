@@ -1,0 +1,57 @@
+<style type="text/css">
+	.div_bat {
+		display: inline-block;
+		vertical-align: top;
+		margin-right: 10px;
+	}
+</style>
+<h1>Batiments</h1>
+<div class="btn-group">
+	<button type="button" class="btn btn-default" ng-click="production()">Production</button>
+	<button type="button" class="btn btn-default" ng-click="militaire()">Militaire</button>
+	<button type="button" class="btn btn-default" ng-click="espionnage()">Espionnage</button>
+</div>
+<button type="button" class="btn btn-default" ng-click="construire()">Construire</button>
+<div ng-repeat="bat in batiments | filter: {type: type}" style="margin-bottom: 15px;" class="panel panel-default" ng-form="batsForm">
+	<div class="panel-heading"><b>Nom du batiment ({{bat.qt || 0}})</b></div>
+	<div class="pane-body">
+		<div class="div_bat hidden-xs"><img src="images/bats/5411bdbd7ff33e840df23ef1.png" class="responsive"></div>
+		<div class="div_bat">
+			<div>
+				<img src="images/fr.png" class="responsive img-top img-icone">{{bat.fr}}
+			</div>
+			<div>
+				<img src="images/bs.png" class="responsive img-top img-icone">{{bat.bs}}
+			</div>
+			<div>
+				<img src="images/pr.png" class="responsive img-top img-icone">{{bat.pr}}
+			</div>
+			<div>
+				<img src="images/au.png" class="responsive img-top img-icone">{{bat.or}}
+			</div>
+			<div>
+				<img src="images/ha.png" class="responsive img-top img-icone">{{bat.ha}}
+			</div>
+		</div>
+		<div class="div_bat">
+			<div>
+				<img src="images/tr_small.png" class="responsive img-icone">{{bat.tr}}
+			</div>
+		</div>
+		<div class="div_bat">
+			<div>
+				<img src="images/ho.png" class="responsive img-icone">1
+			</div>
+		</div>
+		<div class="div_bat">
+			<div>
+				{{bat.description}}
+			</div>
+			<div>
+				<input type="text" ng-model="constructions[bat._id]" ng-pattern="/^[0-9]{1,7}$/" name="bat">
+				<span ng-show="batsForm['bat'].$error.pattern" class="label label-danger">Cette valeur est invalide.</span>
+			</div>
+		</div>
+	</div>
+	
+</div>
