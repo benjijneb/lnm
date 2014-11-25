@@ -92,7 +92,6 @@ exports.build = function (req, res) {
 				// Get free hectares value
 				royaume.getFreeHa(function (freeHa) {
 
-					console.log('Free ha: ' + freeHa)
 					callback(null, batiments, freeHa)
 				})
 			},

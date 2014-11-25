@@ -87,6 +87,28 @@ lnm.config(function ($routeProvider, $locationProvider, $httpProvider) {
 		templateUrl: '/views/irapide.html',
 		controller: 'SignupCtrl'
 	})
+	.when('/messagerie/envoyer', {
+
+		templateUrl: '/views/envoyer.html',
+		controller: 'EnvCtrl',
+		resolve: {
+			loggedin: checkLoggedin
+		}
+	})
+	.when('/messagerie', {
+		templateUrl: '/views/messagerie.html',
+		controller: 'ConvsCtrl',
+		resolve: {
+			loggedin: checkLoggedin
+		}
+	})
+	.when('/messagerie/conversation/:id', {
+		templateUrl: '/views/message.html',
+		controller: 'ConvCtrl',
+		resolve: {
+			loggedin: checkLoggedin
+		}
+	})
 	.otherwise({
 
 		redirectTo: '/'
@@ -198,6 +220,8 @@ lnm.controller('HeadCtrl', function ($rootScope, $scope, $http, $location, socke
 			// No error: authentication OK
 			socket.connect()
 			$rootScope.authUser = user
+
+			// Get infos and redirect to the index page
 			$http.get('/infos').success(function (data) {
 
 				$scope.ressources = data
@@ -218,7 +242,7 @@ lnm.controller('HeadCtrl', function ($rootScope, $scope, $http, $location, socke
 	}
 })
 
-lnm.controller('SignupCtrl', function ($rootScope, $scope, $http, $location) {
+lnm.controller('SignupCtrl', function ($rootScope, $scope, $http, $location, socket) {
 
 	// This object will be filled by the form
 	$scope.user = {}
@@ -230,6 +254,7 @@ lnm.controller('SignupCtrl', function ($rootScope, $scope, $http, $location) {
 
 			// If successful we assign the response to the global user model
 			$rootScope.authUser = response
+			socket.connect()
 
 			// Get infos and redirect to the index page
 			$http.get('/infos').success(function (data) {
@@ -256,9 +281,144 @@ lnm.controller('RoyCtrl', function ($scope, $http, socket) {
 	}*/
 })
 
+lnm.controller('EnvCtrl', function ($scope, $http, $location, socket) {
+
+	$scope.conversation = { destinataires: [] }
+	$scope.inputRoyaume = undefined
+
+	$scope.envoyer = function () {
+
+		$http.post('/conv/envoyer', $scope.conversation).success(function (data) {
+
+			$location.path('/messagerie')
+		})
+	}
+
+	$scope.to = function () {
+
+		$http.get('/royaumes/names').success(function (data) {
+
+			$scope.royaumes = data
+		})
+	}
+
+	$scope.add = function() {
+
+		if ($scope.inputRoyaume && $scope.conversation.destinataires.indexOf($scope.inputRoyaume) == -1) {
+
+			$scope.conversation.destinataires.push($scope.inputRoyaume)
+			$scope.inputRoyaume = ''
+		}
+	}
+
+	$scope.remove = function (i) {
+
+		$scope.conversation.destinataires.splice(i, 1)
+	}
+
+	$scope.to()
+})
+
+lnm.controller('ConvsCtrl', function ($scope, $http, $location, socket) {
+
+	$scope.page = 1
+
+	$scope.liste = function () {
+
+		$http.get('/conv/liste/' + $scope.page).success(function (data) {
+
+			$scope.conversations = data
+		})
+	}
+
+	$scope.next = function () {
+
+		if ($scope.conversations.length == 50) {
+
+			$scope.page += 1
+			$scope.liste()
+		}
+	}
+
+	$scope.previous = function () {
+
+		if ($scope.page > 1) {
+
+			$scope.page = ($scope.page <= 1) ? 1 : $scope.page - 1
+			$scope.liste()
+		}
+	}
+
+	$scope.previousClasses = function () {
+
+		var classes = 'next'
+		if ($scope.page <= 1) classes += ' disabled'
+		return classes
+	}
+
+	$scope.nextClasses = function () {
+
+		var classes = 'previous'
+		if ($scope.conversations.length < 50) classes += ' disabled'
+		return classes
+	}
+
+	$scope.view = function (id) {
+
+		$location.path('/messagerie/conversation/' + id)
+	}
+
+	// TODO: socket listen to new message
+
+	$scope.liste()
+})
+
+lnm.controller('ConvCtrl' , function ($scope, $http, $location, $routeParams, $anchorScroll, $timeout) {
+
+	$scope.reply = false
+	$scope.id = $routeParams.id
+
+	$scope.get = function () {
+
+		$http.get('/conv/' + $scope.id).success(function (data) {
+
+			$scope.conversation = data
+			$http.get('/conv/mark/read/' + $scope.id)
+			$scope.opened = []
+			for (var i = 0; i < $scope.conversation.messages.length; i++) {
+
+				if (i == $scope.conversation.messages.length - 1)
+					$scope.opened.push(true)
+				else
+					$scope.opened.push(false)
+			}
+		})
+	}
+
+	$scope.send = function () {
+
+		$http.post('/conv/reply/' + $scope.id, { content: $scope.content }).success(function (data) {
+
+			$scope.content = ''
+			$scope.get()
+		})
+	}
+
+	$scope.bottom = function () {
+
+        	var old = $location.hash()
+			$location.hash('shadow')
+			$anchorScroll()
+			$location.hash(old)
+	}
+
+	$scope.get()
+})
+
 lnm.controller('ConstCtrl', function ($scope, $http, $modal, socket) {
 
 	$scope.constructions = {}
+	$scope.collapsed = []
 
 	$scope.production = function () {
 
@@ -283,8 +443,32 @@ lnm.controller('ConstCtrl', function ($scope, $http, $modal, socket) {
 		for (var i = data.length - 1; i >= 0; i--) {
 
 			$scope.constructions[data[i]._id] = 0
+			$scope.collapsed[i] = false
 		}
+		$scope.computeCosts()
 	})
+
+	$scope.computeCosts = function () {
+
+		$scope.costs = { food: 0, wood: 0, iron: 0, stone: 0, gold: 0, space: 0, peon: 0 }
+
+		for (var i = $scope.batiments.length - 1; i >= 0; i--) {
+
+			var nbBuilding = $scope.constructions[$scope.batiments[i]._id]
+			$scope.costs.food += nbBuilding * $scope.batiments[i].nr
+			$scope.costs.wood += nbBuilding * $scope.batiments[i].bs
+			$scope.costs.iron += nbBuilding * $scope.batiments[i].fr
+			$scope.costs.stone += nbBuilding * $scope.batiments[i].pr
+			$scope.costs.space += nbBuilding * $scope.batiments[i].ha
+		}
+
+		$scope.alertFood = ($scope.ressources.nr < $scope.costs.food) ? "text-alert" : ""
+		$scope.alertIron = ($scope.ressources.fr < $scope.costs.iron) ? "text-alert" : ""
+		$scope.alertWood = ($scope.ressources.bs < $scope.costs.wood) ? "text-alert" : ""
+		$scope.alertStone = ($scope.ressources.pr < $scope.costs.stone) ? "text-alert" : ""
+		$scope.alertGold = ($scope.ressources.or < $scope.costs.gold) ? "text-alert" : ""
+		$scope.alertSpace = ($scope.ressources.ha.split('/')[0] < $scope.costs.space) ? "text-alert" : ""
+	}
 
 	$scope.construire = function () {
 
@@ -297,7 +481,6 @@ lnm.controller('ConstCtrl', function ($scope, $http, $modal, socket) {
 			})
 		}).error(function (data) {
 
-			//alert(data.message)
 			$modal.open({
 				templateUrl: '/views/modals/error.html',
 				controller: 'ErrorModalController',
@@ -306,11 +489,14 @@ lnm.controller('ConstCtrl', function ($scope, $http, $modal, socket) {
 						return data.message
 					}
 				}
-
 			})
 		})
 	}
 
+	$scope.max = function (i) {
+
+		var bdg = $scope.batiments[i]
+	}
 	// Tick new turn
 	socket.on('tick', function () {
 
@@ -325,6 +511,14 @@ lnm.controller('ConstCtrl', function ($scope, $http, $modal, socket) {
 		for (var id in $scope.constructions) {
 
 			$scope.constructions[id] = 0
+		}
+	}
+
+	$scope.collapseAll = function (collapse) {
+
+		for (var i = $scope.collapsed.length - 1; i >= 0; i--) {
+
+			$scope.collapsed[i] = collapse
 		}
 	}
 })

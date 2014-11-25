@@ -52,7 +52,7 @@ exports.signup = function(req, res) {
 
 			// Create royaume
 			var roy = new Royaume()
-			roy.create(user.id)
+			roy.create(user.id, user.displayName)
 
 			// Remove sensitive data before login
 			user.password = undefined

@@ -1,0 +1,30 @@
+<style type="text/css">
+</style>
+<h1>Messagerie</h1>
+<p>
+	<a class="btn btn-info" href="#/messagerie/envoyer">Nouvelle conversation</a>
+</p>
+<div class="table-responsive">
+	<table class="table table-condensed">
+		<tbody>
+			<tr ng-if="conversations.length <= 0">
+				<td>Aucun message</td>
+			</tr>
+			<tr nf-if="conversation">
+				<td colspan="3">
+					{{conversations.length}} conversation(s) trouvée(s)
+				</td>
+			</tr>
+			<tr ng-class="conversation.read ? 'grey' : 'white'" style="cursor: pointer;" ng-repeat="conversation in conversations"
+				ng-click="view(conversation.id)">
+				<td class="col-sm-1"><input type="checkbox" id="selected"></td>
+				<td class="col-sm-9">{{conversation.objet}}</td>
+				<td class="col-sm-2">{{conversation.last_date}}</td>
+			</tr>
+		</tbody>
+	</table>
+	<ul class="pager">
+		<li ng-class="nextClasses()"><a href ng-click="next()">&larr; Plus anciens</a></li>
+		<li ng-class="previousClasses()"><a href ng-click="previous()">Plus récents &rarr;</a></li>
+	</ul>
+</div>

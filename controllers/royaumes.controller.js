@@ -5,6 +5,23 @@ var Batiment = mongoose.model('Batiment')
 var Maj = mongoose.model('Maj')
 var BatRoy = mongoose.model('BatRoy')
 
+exports.names = function (req, res) {
+
+	Royaume.findOne({ user_id: req.user.id }, function (err, roy) {
+
+		Royaume.find({ _id: { $nin: [roy._id] } }, 'name', function (err, royaumes) {
+
+			if(royaumes) {
+
+				res.jsonp(royaumes)
+			} else {
+
+				res.jsonp({})
+			}
+		})
+	})
+}
+
 exports.infos = function (req, res) {
 
 	// First thing first, find royaume
@@ -43,8 +60,10 @@ exports.infos = function (req, res) {
 			}
 		], function (err, freeHa, nbPendingBuildings) {
 
+			if(nbPendingBuildings <= 0)
+				nbPendingBuildings = ''
 			// Send all gathered info
-			res.send({ nr: roy.nr, fr: roy.fr, bs: roy.bs, pr: roy.bs, or: roy.or, ha: freeHa + "/" + roy.ha, pending: nbPendingBuildings })
+			res.send({ nr: roy.nr, fr: roy.fr, bs: roy.bs, pr: roy.bs, or: roy.or, ha: freeHa + '/' + roy.ha, pending: nbPendingBuildings })
 		})
 	})
 }

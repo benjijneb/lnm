@@ -1,0 +1,345 @@
+{
+  "_id" : ObjectId("5411bdbd7ff33e840df23ef1"),
+  "description" : "Permet de recruter 5 travailleurs et de stocker des ressources.",
+  "nr" : 0,
+  "fr" : 0,
+  "bs" : 3000,
+  "pr" : 2500,
+  "or" : 0,
+  "ha" : 100,
+  "tr" : 1,
+  "pv" : 5000,
+  "type" : 0,
+  "image" : "5411bdbd7ff33e840df23ef1.png",
+  "__v" : 0
+}
+{
+  "_id" : ObjectId("5411bdbd7ff33e840df23ef2"),
+  "description" : "Permet de stocker davantage de ressources.",
+  "nr" : 0,
+  "fr" : 6500,
+  "bs" : 6200,
+  "pr" : 6000,
+  "or" : 0,
+  "ha" : 100,
+  "tr" : 2,
+  "pv" : 10000,
+  "type" : 0,
+  "image" : "5411bdbd7ff33e840df23ef2.png",
+  "__v" : 0
+}
+{
+  "_id" : ObjectId("5411bdbd7ff33e840df23ef3"),
+  "description" : "Permet de recruter des caravanes pour vendre des ressources sur le marché.",
+  "nr" : 0,
+  "fr" : 2000,
+  "bs" : 3000,
+  "pr" : 3000,
+  "or" : 0,
+  "ha" : 100,
+  "tr" : 2,
+  "pv" : 6000,
+  "type" : 0,
+  "image" : "5411bdbd7ff33e840df23ef3.png",
+  "__v" : 0
+}
+{
+  "_id" : ObjectId("5411bdbd7ff33e840df23ef4"),
+  "description" : "Permet de produire de la nourriture.",
+  "nr" : 0,
+  "fr" : 500,
+  "bs" : 200,
+  "pr" : 0,
+  "or" : 0,
+  "ha" : 100,
+  "tr" : 1,
+  "pv" : 1000,
+  "type" : 0,
+  "image" : "5411bdbd7ff33e840df23ef4.png",
+  "__v" : 0
+}
+{
+  "_id" : ObjectId("5411bdbd7ff33e840df23ef5"),
+  "description" : "Permet de produire du fer.",
+  "nr" : 0,
+  "fr" : 0,
+  "bs" : 1000,
+  "pr" : 1000,
+  "or" : 0,
+  "ha" : 50,
+  "tr" : 1,
+  "pv" : 2000,
+  "type" : 0,
+  "image" : "5411bdbd7ff33e840df23ef5.png",
+  "__v" : 0
+}
+{
+  "_id" : ObjectId("5411bdbd7ff33e840df23ef6"),
+  "description" : "Permet de produire du bois.",
+  "nr" : 0,
+  "fr" : 3000,
+  "bs" : 0,
+  "pr" : 1000,
+  "or" : 0,
+  "ha" : 50,
+  "tr" : 1,
+  "pv" : 2000,
+  "type" : 0,
+  "image" : "5411bdbd7ff33e840df23ef6.png",
+  "__v" : 0
+}
+{
+  "_id" : ObjectId("5411bdbd7ff33e840df23ef7"),
+  "description" : "Permet de produire des pierres.",
+  "nr" : 0,
+  "fr" : 1000,
+  "bs" : 1000,
+  "pr" : 0,
+  "or" : 0,
+  "ha" : 50,
+  "tr" : 1,
+  "pv" : 2000,
+  "type" : 0,
+  "image" : "5411bdbd7ff33e840df23ef7.png",
+  "__v" : 0
+}
+{
+  "_id" : ObjectId("5411bdbd7ff33e840df23ef8"),
+  "description" : "Permet de produire de l'or.",
+  "nr" : 0,
+  "fr" : 2000,
+  "bs" : 2500,
+  "pr" : 2000,
+  "or" : 0,
+  "ha" : 80,
+  "tr" : 1,
+  "pv" : 2000,
+  "type" : 0,
+  "image" : "5411bdbd7ff33e840df23ef8.png",
+  "__v" : 0
+}
+{
+  "_id" : ObjectId("5411bdbd7ff33e840df23ef9"),
+  "description" : "Permet de protéger le royaume.",
+  "nr" : 0,
+  "fr" : 10000,
+  "bs" : 10000,
+  "pr" : 15000,
+  "or" : 0,
+  "ha" : 120,
+  "tr" : 5,
+  "pv" : 10000,
+  "type" : 1,
+  "image" : "5411bdbd7ff33e840df23ef9.png",
+  "__v" : 0
+}
+{
+  "_id" : ObjectId("5411bdbd7ff33e840df23efa"),
+  "description" : "Permet de protéger le royaume en tirant sur l'armée ennemie lorsque le royaume est attaqué.",
+  "nr" : 0,
+  "fr" : 1000,
+  "bs" : 1000,
+  "pr" : 5000,
+  "or" : 0,
+  "ha" : 200,
+  "tr" : 2,
+  "pv" : 14000,
+  "type" : 1,
+  "image" : "5411bdbd7ff33e840df23efa.png",
+  "__v" : 0
+}
+{
+  "_id" : ObjectId("5411bdbd7ff33e840df23efb"),
+  "description" : "Permet de recruter de l'infanterie légère.",
+  "nr" : 0,
+  "fr" : 2000,
+  "bs" : 3000,
+  "pr" : 5000,
+  "or" : 0,
+  "ha" : 100,
+  "tr" : 1,
+  "pv" : 3000,
+  "type" : 1,
+  "image" : "5411bdbd7ff33e840df23efb.png",
+  "__v" : 0
+}
+{
+  "_id" : ObjectId("5411bdbd7ff33e840df23efc"),
+  "description" : "Permet de recruter des archers.",
+  "nr" : 0,
+  "fr" : 2200,
+  "bs" : 3300,
+  "pr" : 5500,
+  "or" : 0,
+  "ha" : 110,
+  "tr" : 1,
+  "pv" : 3000,
+  "type" : 1,
+  "image" : "5411bdbd7ff33e840df23efc.png",
+  "__v" : 0
+}
+{
+  "_id" : ObjectId("5411bdbd7ff33e840df23efd"),
+  "description" : "Permet de recruter des cavaliers légers.",
+  "nr" : 0,
+  "fr" : 3000,
+  "bs" : 3780,
+  "pr" : 6000,
+  "or" : 0,
+  "ha" : 135,
+  "tr" : 2,
+  "pv" : 4000,
+  "type" : 1,
+  "image" : "5411bdbd7ff33e840df23efd.png",
+  "__v" : 0
+}
+{
+  "_id" : ObjectId("5411bdbd7ff33e840df23efe"),
+  "description" : "Permet de recruter des archers d'élite.",
+  "nr" : 0,
+  "fr" : 4160,
+  "bs" : 3330,
+  "pr" : 6600,
+  "or" : 0,
+  "ha" : 160,
+  "tr" : 2,
+  "pv" : 4000,
+  "type" : 1,
+  "image" : "5411bdbd7ff33e840df23efe.png",
+  "__v" : 0
+}
+{
+  "_id" : ObjectId("5411bdbd7ff33e840df23eff"),
+  "description" : "Permet de recruter de l'infanterie lourde.",
+  "nr" : 0,
+  "fr" : 4500,
+  "bs" : 4950,
+  "pr" : 7500,
+  "or" : 0,
+  "ha" : 180,
+  "tr" : 3,
+  "pv" : 5000,
+  "type" : 1,
+  "image" : "5411bdbd7ff33e840df23eff.png",
+  "__v" : 0
+}
+{
+  "_id" : ObjectId("5411bdbd7ff33e840df23f00"),
+  "description" : "Permet de recruter des archers montés.",
+  "nr" : 0,
+  "fr" : 4950,
+  "bs" : 5450,
+  "pr" : 8350,
+  "or" : 0,
+  "ha" : 200,
+  "tr" : 3,
+  "pv" : 5000,
+  "type" : 1,
+  "image" : "5411bdbd7ff33e840df23f00.png",
+  "__v" : 0
+}
+{
+  "_id" : ObjectId("5411bdbd7ff33e840df23f01"),
+  "description" : "Permet de recruter des cavaliers lourds.",
+  "nr" : 0,
+  "fr" : 6750,
+  "bs" : 6900,
+  "pr" : 10000,
+  "or" : 0,
+  "ha" : 240,
+  "tr" : 4,
+  "pv" : 6000,
+  "type" : 1,
+  "image" : "5411bdbd7ff33e840df23f01.png",
+  "__v" : 0
+}
+{
+  "_id" : ObjectId("5411bdbd7ff33e840df23f02"),
+  "description" : "Permet de recruter des archers montés d'élite.",
+  "nr" : 0,
+  "fr" : 7425,
+  "bs" : 7590,
+  "pr" : 11000,
+  "or" : 0,
+  "ha" : 265,
+  "tr" : 4,
+  "pv" : 6000,
+  "type" : 1,
+  "image" : "5411bdbd7ff33e840df23f02.png",
+  "__v" : 0
+}
+{
+  "_id" : ObjectId("5411bdbd7ff33e840df23f03"),
+  "description" : "Permet de recruter des engins de siège.",
+  "nr" : 0,
+  "fr" : 3000,
+  "bs" : 4000,
+  "pr" : 12000,
+  "or" : 0,
+  "ha" : 560,
+  "tr" : 5,
+  "pv" : 7500,
+  "type" : 1,
+  "image" : "5411bdbd7ff33e840df23f03.png",
+  "__v" : 0
+}
+{
+  "_id" : ObjectId("5411bdbd7ff33e840df23f04"),
+  "description" : "Permet de recruter des espions et d'améliorer la compétences d'espionnage.",
+  "nr" : 0,
+  "fr" : 5000,
+  "bs" : 5500,
+  "pr" : 4000,
+  "or" : 0,
+  "ha" : 50,
+  "tr" : 15,
+  "pv" : 3000,
+  "type" : 2,
+  "image" : "5411bdbd7ff33e840df23f04.png",
+  "__v" : 0
+}
+{
+  "_id" : ObjectId("5411bdbd7ff33e840df23f05"),
+  "description" : "Permet d'améliorer la compétence de sape des espions.",
+  "nr" : 0,
+  "fr" : 1500,
+  "bs" : 2500,
+  "pr" : 4000,
+  "or" : 0,
+  "ha" : 50,
+  "tr" : 15,
+  "pv" : 3000,
+  "type" : 2,
+  "image" : "5411bdbd7ff33e840df23f05.png",
+  "__v" : 0
+}
+{
+  "_id" : ObjectId("5411bdbd7ff33e840df23f06"),
+  "description" : "Permet d'améliorer la compétence de vol des espions.",
+  "nr" : 0,
+  "fr" : 1500,
+  "bs" : 2500,
+  "pr" : 4000,
+  "or" : 0,
+  "ha" : 50,
+  "tr" : 15,
+  "pv" : 3000,
+  "type" : 2,
+  "image" : "5411bdbd7ff33e840df23f06.png",
+  "__v" : 0
+}
+{
+  "_id" : ObjectId("5411bdbd7ff33e840df23f07"),
+  "description" : "Permet d'améliorer la compétence de sabotage des espions.",
+  "nr" : 0,
+  "fr" : 1500,
+  "bs" : 2500,
+  "pr" : 4000,
+  "or" : 0,
+  "ha" : 50,
+  "tr" : 15,
+  "pv" : 3000,
+  "type" : 2,
+  "image" : "5411bdbd7ff33e840df23f07.png",
+  "__v" : 0
+}

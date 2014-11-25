@@ -19,6 +19,10 @@ var RoyaumeSchema = new Schema({
 		type: Schema.Types.ObjectId,
 		ref: 'User'
 	},
+	name: {
+		type: String,
+		trim: true
+	},
 	nr: {
 		type: Number,
 		default: 100000
@@ -88,9 +92,10 @@ RoyaumeSchema.statics.findByUserId = function (userId) {
 	})
 }
 
-RoyaumeSchema.methods.create = function (userId) {
+RoyaumeSchema.methods.create = function (userId, royaumeName) {
 
 	this.user_id = userId
+	this.name = royaumeName
 	this.update = Date.now()
 	this.save()
 }

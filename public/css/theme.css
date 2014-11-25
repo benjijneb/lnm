@@ -3,7 +3,7 @@
 }
 body {
 	padding-top: 50px;
-	background: #fff /*url(../images/fond.jpg) no-repeat center 50px*/;
+	/*background: #333333 url(../images/fond.jpg) no-repeat center 50px*/;
 }
 .container.top {
 	width: 100%;
@@ -71,7 +71,7 @@ body {
 .img-res {
 	width: 22px;
 	height: 22px;
-	border: solid black 1px;
+
 }
 .row-top {
 	font-size: 11px;
@@ -87,4 +87,36 @@ body {
 }
 .popover-content {
 	color: rgb(51, 51, 51);
+}
+.white {
+	background-color: white;
+}
+.grey {
+	background-color: silver;
+}
+.div-bat {
+	display: inline-block;
+	vertical-align: top;
+	margin-right: 10px;
+}
+.box-header-build input {
+	text-align: right;
+}
+.text-alert {
+	color: red;
+}
+/*.panel-body {
+	background-color: #403939;
+	color: #F2F2F2
+}
+.panel-default>.panel-heading {
+	background-color: #4A2929;
+	color: #F2F2F2;
+}
+.well-sm {
+	background-color: #8AA693;
+}*/
+.buildings {
+	font-size: 0.8em;
+	width: 100%;
 }

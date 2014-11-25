@@ -1,0 +1,29 @@
+<h4>{{conversation.title}} <small>
+	<span class="label label-primary" ng-if="conversation.rp[0]">rp</span>
+	<span class="label label-primary" ng-if="conversation.guild[0]">guilde</span>
+	<span class="label label-primary" ng-if="conversation.admin[0]">admin</span>
+</small></h4>
+<div class="well well-sm">
+	Participants : <span><strong>{{conversation.participants.join(', ')}}</strong></span>
+</div>
+<accordion close-others="false">
+	<accordion-group ng-repeat="message in conversation.messages" is-open="opened[$index]">
+		<accordion-heading>
+			{{message.sender}} <small>{{message.sent}}</small>
+			<i class="pull-right glyphicon"
+				ng-class="{'glyphicon-chevron-down': opened[$index], 'glyphicon-chevron-right': !opened[$index]}"></i>
+		</accordion-heading>
+		 {{message.content}}
+	</accordion-group>
+</accordion>
+<p ng-hide="reply">
+	<button class="btn btn-success" type="button" ng-click="reply = !reply">Répondre</button>
+</p>
+<p ng-hide="!reply">
+	<textarea ng-model="content" class="form-control" rows="10"></textarea>
+</p>
+<p ng-hide="!reply">
+	<button class="btn btn-success" type="button" ng-click="send()">Envoyer</button>
+	<button class="btn btn-danger" type="button" ng-click="reply = !reply">Annuler</button>
+</p>
+<div id="shadow"></div>
