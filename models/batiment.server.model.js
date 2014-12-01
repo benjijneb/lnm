@@ -37,6 +37,9 @@ var BatimentSchema = new Schema({
 	or: {
 		type: Number
 	},
+	peon: {
+		type: Number
+	},
 	ha: {
 		type: Number
 	},

@@ -460,6 +460,7 @@ lnm.controller('ConstCtrl', function ($scope, $http, $modal, socket) {
 			$scope.costs.iron += nbBuilding * $scope.batiments[i].fr
 			$scope.costs.stone += nbBuilding * $scope.batiments[i].pr
 			$scope.costs.space += nbBuilding * $scope.batiments[i].ha
+			$scope.costs.peon += nbBuilding * $scope.batiments[i].peon
 		}
 
 		$scope.alertFood = ($scope.ressources.nr < $scope.costs.food) ? "text-alert" : ""
@@ -467,7 +468,7 @@ lnm.controller('ConstCtrl', function ($scope, $http, $modal, socket) {
 		$scope.alertWood = ($scope.ressources.bs < $scope.costs.wood) ? "text-alert" : ""
 		$scope.alertStone = ($scope.ressources.pr < $scope.costs.stone) ? "text-alert" : ""
 		$scope.alertGold = ($scope.ressources.or < $scope.costs.gold) ? "text-alert" : ""
-		$scope.alertSpace = ($scope.ressources.ha.split('/')[0] < $scope.costs.space) ? "text-alert" : ""
+		$scope.alertSpace = ($scope.ressources.ha.free < $scope.costs.space) ? "text-alert" : ""
 	}
 
 	$scope.construire = function () {
@@ -496,7 +497,19 @@ lnm.controller('ConstCtrl', function ($scope, $http, $modal, socket) {
 	$scope.max = function (i) {
 
 		var bdg = $scope.batiments[i]
+		$scope.constructions[bdg._id] = 0
+		$scope.computeCosts()
+		var min = Math.min(
+			Math.floor(($scope.ressources.fr - $scope.costs.iron) / bdg.fr),
+			Math.floor(($scope.ressources.bs - $scope.costs.wood) / bdg.bs),
+			Math.floor(($scope.ressources.pr - $scope.costs.stone) / bdg.pr),
+			Math.floor(($scope.ressources.or - $scope.costs.gold) / bdg.or),
+			Math.floor(($scope.ressources.ha.free - $scope.costs.space) / bdg.ha)
+		)
+		$scope.constructions[bdg._id] = (isNaN(min) || min < 0) ? 0 : min
+		$scope.computeCosts()
 	}
+
 	// Tick new turn
 	socket.on('tick', function () {
 

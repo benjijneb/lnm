@@ -63,7 +63,8 @@ exports.infos = function (req, res) {
 			if(nbPendingBuildings <= 0)
 				nbPendingBuildings = ''
 			// Send all gathered info
-			res.send({ nr: roy.nr, fr: roy.fr, bs: roy.bs, pr: roy.bs, or: roy.or, ha: freeHa + '/' + roy.ha, pending: nbPendingBuildings })
+			res.send({ nr: roy.nr, fr: roy.fr, bs: roy.bs, pr: roy.bs, or: roy.or,
+				ha: { free: freeHa, total: roy.ha }, pending: nbPendingBuildings })
 		})
 	})
 }
